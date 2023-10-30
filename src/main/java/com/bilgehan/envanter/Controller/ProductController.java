@@ -36,7 +36,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductById(request.getId()));
     }
 
-    @PostMapping("/")
+    @PostMapping("/products")
     public ResponseEntity<List<ProductDto>> getProducts(){
         return ResponseEntity.ok(productService.getProducts());
     }

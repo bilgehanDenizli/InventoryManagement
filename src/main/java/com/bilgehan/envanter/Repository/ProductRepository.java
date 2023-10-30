@@ -14,7 +14,6 @@ import java.util.Set;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product getProductById(long productId);
-    Set<Product> getAllByProductCategory(ProductCategory productCategory);
     boolean existsProductByName(String name);
 
 }

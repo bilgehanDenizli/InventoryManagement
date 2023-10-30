@@ -62,8 +62,4 @@ public class InventoryController {
     public ResponseEntity<Set<InventoryDto>> getByProductName(@RequestBody GetInvByProductNameRequest request){
         return ResponseEntity.ok(inventoryService.getByProductName(request));
     }
-
-
-
-
 }

@@ -10,6 +10,5 @@ public class NotAcceptableException extends RuntimeException {
         super(message);
     }
 
-
 }
 
