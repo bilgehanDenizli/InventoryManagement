@@ -1,4 +1,6 @@
 ﻿# InventoryManagement
+Postman collection in the files.
+ 
 Database(Postgres) inserts for manual testing:
 
 insert into warehouse (name, region, city)
