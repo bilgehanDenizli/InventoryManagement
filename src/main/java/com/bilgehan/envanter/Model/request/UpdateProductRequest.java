@@ -8,4 +8,5 @@ public class UpdateProductRequest {
     private long id;
     private String name;
     private ProductCategory productCategory;
+    private boolean isDeleted;
 }
