@@ -1,4 +1,4 @@
-package com.bilgehan.envanter.Model.request;
+package com.bilgehan.envanter.model.request;
 
 import lombok.Data;
 

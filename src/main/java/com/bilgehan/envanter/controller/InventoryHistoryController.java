@@ -1,8 +1,8 @@
-package com.bilgehan.envanter.Controller;
+package com.bilgehan.envanter.controller;
 
-import com.bilgehan.envanter.Model.Dto.InventoryHistoryDto;
-import com.bilgehan.envanter.Model.request.GetHistoryRequest;
-import com.bilgehan.envanter.Service.InventoryHistoryService;
+import com.bilgehan.envanter.model.dto.InventoryHistoryDto;
+import com.bilgehan.envanter.model.request.GetHistoryRequest;
+import com.bilgehan.envanter.service.InventoryHistoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

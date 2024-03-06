@@ -1,6 +1,6 @@
-package com.bilgehan.envanter.Model.Dto;
+package com.bilgehan.envanter.model.dto;
 
-import com.bilgehan.envanter.Model.entity.ProductCategory;
+import com.bilgehan.envanter.model.entity.ProductCategory;
 import lombok.Builder;
 import lombok.Data;
 

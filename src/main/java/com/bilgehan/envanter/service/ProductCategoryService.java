@@ -1,8 +1,8 @@
-package com.bilgehan.envanter.Service;
+package com.bilgehan.envanter.service;
 
-import com.bilgehan.envanter.Model.Dto.ProductCategoryDto;
-import com.bilgehan.envanter.Model.entity.ProductCategory;
-import com.bilgehan.envanter.Repository.ProductCategoryRepository;
+import com.bilgehan.envanter.model.dto.ProductCategoryDto;
+import com.bilgehan.envanter.model.entity.ProductCategory;
+import com.bilgehan.envanter.repository.ProductCategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

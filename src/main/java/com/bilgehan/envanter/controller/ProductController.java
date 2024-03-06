@@ -1,10 +1,10 @@
-package com.bilgehan.envanter.Controller;
+package com.bilgehan.envanter.controller;
 
-import com.bilgehan.envanter.Model.Dto.ProductDto;
-import com.bilgehan.envanter.Model.request.AddProductRequest;
-import com.bilgehan.envanter.Model.request.GetProductByIdRequest;
-import com.bilgehan.envanter.Model.request.UpdateProductRequest;
-import com.bilgehan.envanter.Service.ProductService;
+import com.bilgehan.envanter.model.dto.ProductDto;
+import com.bilgehan.envanter.model.request.AddProductRequest;
+import com.bilgehan.envanter.model.request.GetProductByIdRequest;
+import com.bilgehan.envanter.model.request.UpdateProductRequest;
+import com.bilgehan.envanter.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

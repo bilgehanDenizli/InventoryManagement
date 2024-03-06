@@ -1,9 +1,9 @@
-package com.bilgehan.envanter.Service;
+package com.bilgehan.envanter.service;
 
-import com.bilgehan.envanter.Model.Dto.WarehouseDto;
-import com.bilgehan.envanter.Model.entity.Warehouse;
-import com.bilgehan.envanter.Model.request.GetWarehousesRequest;
-import com.bilgehan.envanter.Repository.WarehouseRepository;
+import com.bilgehan.envanter.model.dto.WarehouseDto;
+import com.bilgehan.envanter.model.entity.Warehouse;
+import com.bilgehan.envanter.model.request.GetWarehousesRequest;
+import com.bilgehan.envanter.repository.WarehouseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

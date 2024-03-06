@@ -1,8 +1,8 @@
-package com.bilgehan.envanter.Controller;
+package com.bilgehan.envanter.controller;
 
-import com.bilgehan.envanter.Model.Dto.WarehouseDto;
-import com.bilgehan.envanter.Model.request.GetWarehousesRequest;
-import com.bilgehan.envanter.Service.WarehouseService;
+import com.bilgehan.envanter.model.dto.WarehouseDto;
+import com.bilgehan.envanter.model.request.GetWarehousesRequest;
+import com.bilgehan.envanter.service.WarehouseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

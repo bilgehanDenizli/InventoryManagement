@@ -1,18 +1,13 @@
-package com.bilgehan.envanter.Service;
+package com.bilgehan.envanter.service;
 
-import com.bilgehan.envanter.Model.Dto.InventoryHistoryDto;
-import com.bilgehan.envanter.Model.Dto.ProductCategoryDto;
-import com.bilgehan.envanter.Model.entity.InventoryHistory;
-import com.bilgehan.envanter.Model.entity.ProductCategory;
-import com.bilgehan.envanter.Model.request.GetHistoryRequest;
-import com.bilgehan.envanter.Repository.InventoryHistoryRepository;
+import com.bilgehan.envanter.model.dto.InventoryHistoryDto;
+import com.bilgehan.envanter.model.entity.InventoryHistory;
+import com.bilgehan.envanter.model.request.GetHistoryRequest;
+import com.bilgehan.envanter.repository.InventoryHistoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 

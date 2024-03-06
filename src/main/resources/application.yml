@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/Inventory_Management
+    password: '1'
+  jpa:
+    database: POSTGRESQL
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+#KAFKA
+  kafka:
+    bootstrap-server: "127.0.0.1:9092"
+    producer:
+      key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      value-serializer: "org.springframework.kafka.support.serializer.JsonSerializer"
+    consumer:
+      group-id: "group-1"
+      key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+      value-deserializer: "org.springframework.kafka.support.serializer.JsonDeserializer"
+      auto-offset-reset: "earliest"
+#KAFKA
+
+hz-client:
+  cluster-name: Inventory_Management
+  network-config:
+    addresses:
+      - 172.22.0.2:5701
+
+logging:
+  level:
+    com:
+      bilgehan: TRACE
+    root: WARN
+
+
+

@@ -1,6 +1,6 @@
-package com.bilgehan.envanter.Model.request;
+package com.bilgehan.envanter.model.request;
 
-import com.bilgehan.envanter.Model.entity.ProductCategory;
+import com.bilgehan.envanter.model.entity.ProductCategory;
 import lombok.Data;
 
 @Data

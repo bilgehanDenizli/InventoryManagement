@@ -1,15 +1,15 @@
-package com.bilgehan.envanter.Service;
+package com.bilgehan.envanter.service;
 
-import com.bilgehan.envanter.Model.Dto.InventoryDto;
-import com.bilgehan.envanter.Model.entity.Inventory;
-import com.bilgehan.envanter.Model.entity.InventoryHistory;
-import com.bilgehan.envanter.Model.entity.Product;
-import com.bilgehan.envanter.Model.entity.Warehouse;
-import com.bilgehan.envanter.Model.request.*;
-import com.bilgehan.envanter.Repository.InventoryHistoryRepository;
-import com.bilgehan.envanter.Repository.InventoryRepository;
-import com.bilgehan.envanter.Repository.ProductRepository;
-import com.bilgehan.envanter.Repository.WarehouseRepository;
+import com.bilgehan.envanter.model.dto.InventoryDto;
+import com.bilgehan.envanter.model.entity.Inventory;
+import com.bilgehan.envanter.model.entity.InventoryHistory;
+import com.bilgehan.envanter.model.entity.Product;
+import com.bilgehan.envanter.model.entity.Warehouse;
+import com.bilgehan.envanter.model.request.*;
+import com.bilgehan.envanter.repository.InventoryHistoryRepository;
+import com.bilgehan.envanter.repository.InventoryRepository;
+import com.bilgehan.envanter.repository.ProductRepository;
+import com.bilgehan.envanter.repository.WarehouseRepository;
 import com.bilgehan.envanter.exception.NotAcceptableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

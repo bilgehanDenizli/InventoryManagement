@@ -1,6 +1,6 @@
-package com.bilgehan.envanter.Repository;
+package com.bilgehan.envanter.repository;
 
-import com.bilgehan.envanter.Model.entity.Inventory;
+import com.bilgehan.envanter.model.entity.Inventory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.bilgehan.envanter.Controller;
+package com.bilgehan.envanter.controller;
 
-import com.bilgehan.envanter.Model.Dto.ProductCategoryDto;
-import com.bilgehan.envanter.Service.ProductCategoryService;
+import com.bilgehan.envanter.model.dto.ProductCategoryDto;
+import com.bilgehan.envanter.service.ProductCategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

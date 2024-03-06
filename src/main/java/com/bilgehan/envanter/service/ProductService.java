@@ -1,10 +1,10 @@
-package com.bilgehan.envanter.Service;
+package com.bilgehan.envanter.service;
 
-import com.bilgehan.envanter.Model.Dto.ProductDto;
-import com.bilgehan.envanter.Model.entity.Product;
-import com.bilgehan.envanter.Model.request.UpdateProductRequest;
-import com.bilgehan.envanter.Repository.ProductRepository;
-import com.bilgehan.envanter.Model.request.AddProductRequest;
+import com.bilgehan.envanter.model.dto.ProductDto;
+import com.bilgehan.envanter.model.entity.Product;
+import com.bilgehan.envanter.model.request.UpdateProductRequest;
+import com.bilgehan.envanter.repository.ProductRepository;
+import com.bilgehan.envanter.model.request.AddProductRequest;
 import com.bilgehan.envanter.exception.NotAcceptableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

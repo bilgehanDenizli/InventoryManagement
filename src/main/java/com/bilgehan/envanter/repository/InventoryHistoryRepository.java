@@ -1,6 +1,6 @@
-package com.bilgehan.envanter.Repository;
+package com.bilgehan.envanter.repository;
 
-import com.bilgehan.envanter.Model.entity.InventoryHistory;
+import com.bilgehan.envanter.model.entity.InventoryHistory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;

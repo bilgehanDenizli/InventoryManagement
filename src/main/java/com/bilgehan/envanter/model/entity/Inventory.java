@@ -1,4 +1,4 @@
-package com.bilgehan.envanter.Model.entity;
+package com.bilgehan.envanter.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

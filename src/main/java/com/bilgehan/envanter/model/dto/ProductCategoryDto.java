@@ -1,4 +1,4 @@
-package com.bilgehan.envanter.Model.Dto;
+package com.bilgehan.envanter.model.dto;
 
 import lombok.Builder;
 import lombok.Data;
