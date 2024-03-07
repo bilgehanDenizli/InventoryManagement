@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Builder
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Table(name = "product")
 @Where(clause = "is_deleted=false")
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

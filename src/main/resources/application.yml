@@ -22,11 +22,11 @@ spring:
       auto-offset-reset: "earliest"
 #KAFKA
 
-hz-client:
-  cluster-name: Inventory_Management
-  network-config:
-    addresses:
-      - 172.22.0.2:5701
+#hz-client:
+#  cluster-name: Inventory_Management
+#  network-config:
+#    addresses:
+#      - localhost:5701
 
 logging:
   level:

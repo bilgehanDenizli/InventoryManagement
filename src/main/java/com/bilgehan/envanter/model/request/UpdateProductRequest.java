@@ -3,8 +3,10 @@ package com.bilgehan.envanter.model.request;
 import com.bilgehan.envanter.model.entity.ProductCategory;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class UpdateProductRequest {
+public class UpdateProductRequest implements Serializable {
     private long id;
     private String name;
     private ProductCategory productCategory;

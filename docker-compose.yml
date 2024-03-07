@@ -1,11 +1,12 @@
 version: "3.8"
 services:
-  hazelcast:
-    image: hazelcast/hazelcast:latest
-    ports:
-      - "5701:5701"
-    environment:
-      - HZ_CLUSTERNAME=Inventory_Management
+#  hazelcast:
+#    image: hazelcast/hazelcast:latest
+#    ports:
+#      - "5701:5701"
+#    environment:
+#      - HZ_CLUSTERNAME=Inventory_Management
+#      - HZ_NETWORK_PUBLICADDRESS=172.22.0.2:5701
   management-center:
     image: hazelcast/management-center:latest
     ports:
@@ -61,7 +62,7 @@ services:
     depends_on:
       - zookeeper
       - broker
-      - schema-registry
+      #- schema-registry
     ports:
       - "9021:9021"
     environment:

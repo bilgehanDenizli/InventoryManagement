@@ -1,5 +1,6 @@
 package com.bilgehan.envanter.service;
 
+import com.bilgehan.envanter.kafka.producer.KafkaProducer;
 import com.bilgehan.envanter.model.dto.InventoryDto;
 import com.bilgehan.envanter.model.entity.Inventory;
 import com.bilgehan.envanter.model.entity.Product;
@@ -31,18 +32,21 @@ public class InventoryServiceTest {
     private ProductRepository productRepository;
     private WarehouseRepository warehouseRepository;
 
+    private KafkaProducer kafkaProducer;
     @Before
     public void setUp() throws Exception {
         inventoryRepository = Mockito.mock(InventoryRepository.class);
         inventoryHistoryRepository = Mockito.mock(InventoryHistoryRepository.class);
         productRepository = Mockito.mock(ProductRepository.class);
         warehouseRepository = Mockito.mock(WarehouseRepository.class);
+        kafkaProducer = Mockito.mock(KafkaProducer.class);
 
         inventoryService = new InventoryService(
                 inventoryRepository,
                 inventoryHistoryRepository,
                 productRepository,
-                warehouseRepository);
+                warehouseRepository,
+                kafkaProducer);
     }
 
     @Test(expected = NotAcceptableException.class)
@@ -99,7 +103,7 @@ public class InventoryServiceTest {
         Mockito.when(inventoryRepository.getInventoryByWarehouse_Name(request.getWarehouseName())).thenReturn(inventorySet);
         Set<InventoryDto> inventoryDtos = inventoryService.mapInventoryDtos(inventorySet);
 
-        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseName(request);
+        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseName(request.getWarehouseName());
 
         Assert.assertEquals(inventoryDtoSetResult, inventoryDtos);
 
@@ -118,7 +122,7 @@ public class InventoryServiceTest {
         Set<InventoryDto> inventoryDtos = inventoryService.mapInventoryDtos(inventorySet);
 
         //test should stop after this
-        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseName(request);
+        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseName(request.getWarehouseName());
 
         Assert.assertNotEquals(inventoryDtoSetResult, inventoryDtos);
 

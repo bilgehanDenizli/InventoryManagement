@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Builder
@@ -17,7 +18,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Table(name = "inventory")
 @Where(clause = "is_deleted=false")
-public class Inventory {
+public class Inventory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KafkaConfig {
 
-    @Bean
+   /* @Bean
     public NewTopic createTopic() {
-        return new NewTopic("inventory_cache_delete", 5,(short) 1);
-    }
+        return new NewTopic("inventory-cache-delete", 5,(short) 1);
+    }*/
 }

@@ -5,11 +5,12 @@ import com.bilgehan.envanter.model.entity.Warehouse;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
 @Builder
-public class InventoryDto {
+public class InventoryDto implements Serializable{
     private Long inventoryId;
     private long amount;
     private Product product;
