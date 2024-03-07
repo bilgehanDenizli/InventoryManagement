@@ -5,6 +5,6 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class GetInvByProductNameRequest implements Serializable {
+public class GetInvByProductNameRequest {
     private String productName;
 }

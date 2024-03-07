@@ -22,10 +22,10 @@ public class WarehouseService {
 
     public List<WarehouseDto> getWarehouses(GetWarehousesRequest request) {
         List<WarehouseDto> warehouseDtoList = new ArrayList<>();
-        PageRequest pageRequest = PageRequest.of(request.getPage(),request.getLimit());
+        PageRequest pageRequest = PageRequest.of(request.getPage(), request.getLimit());
         Page<Warehouse> warehouseList = warehouseRepository.findAllWithPagingOrderById(pageRequest);
-        for (Warehouse warehouse: warehouseList
-             ) {
+        for (Warehouse warehouse : warehouseList
+        ) {
             WarehouseDto warehouseDto = WarehouseDto.builder()
                     .id(warehouse.getId())
                     .name(warehouse.getName())
@@ -35,5 +35,15 @@ public class WarehouseService {
             warehouseDtoList.add(warehouseDto);
         }
         return warehouseDtoList;
+    }
+
+    public WarehouseDto getWarehouseById(long warehouseId) {
+        Warehouse warehouse = warehouseRepository.getWarehouseById(warehouseId);
+        return WarehouseDto.builder()
+                .id(warehouseId)
+                .city(warehouse.getCity())
+                .name(warehouse.getName())
+                .region(warehouse.getRegion())
+                .build();
     }
 }

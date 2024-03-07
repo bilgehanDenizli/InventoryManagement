@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class HazelcastConfig {
-    @Bean
+   /* @Bean
     public void config() {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName("Inventory_Management");
@@ -19,6 +19,5 @@ public class HazelcastConfig {
         map.put("1", "John");
         map.put("2", "Mary");
         map.put("3", "Jane");
-    }
-
+    }*/
 }

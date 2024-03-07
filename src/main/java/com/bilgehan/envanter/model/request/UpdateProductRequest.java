@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class UpdateProductRequest implements Serializable {
+public class UpdateProductRequest {
     private long id;
     private String name;
     private ProductCategory productCategory;

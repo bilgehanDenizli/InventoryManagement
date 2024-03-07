@@ -5,6 +5,6 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class GetInvByWarehouseCityRequest implements Serializable {
+public class GetInvByWarehouseCityRequest {
     private String city;
 }

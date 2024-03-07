@@ -14,6 +14,7 @@ import com.bilgehan.envanter.repository.WarehouseRepository;
 import com.bilgehan.envanter.exception.NotAcceptableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -95,10 +96,10 @@ public class InventoryService {
                 .warehouseId(request.getWarehouseId())
                 .build();
 
+        kafkaProducer.deleteCacheByWarehouseName(request.getWarehouseId());
+
         inventoryHistoryRepository.save(inventoryHistory);
         logger.info("Saved Inventory History to Database");
-
-        kafkaProducer.deleteCache();
     }
 
     public void deleteProduct(DeleteFromInventoryRequest request) {
@@ -112,7 +113,6 @@ public class InventoryService {
         logger.info("Inventory soft deleted from database.");
     }
 
-    @Cacheable(cacheNames = "InventoryByWarehouseName")
     public Set<InventoryDto> getByWarehouseName(String warehouseName) {
         if (warehouseName == null || warehouseName.trim().equals("")) {
             logger.error("Warehouse name cannot be empty.");
@@ -128,7 +128,6 @@ public class InventoryService {
         return mapInventoryDtos(inventorySet);
     }
 
-    @Cacheable(cacheNames = "InventoryByWarehouseCity")
     public Set<InventoryDto> getByWarehouseCity(GetInvByWarehouseCityRequest request) {
         if (request.getCity() == null || request.getCity().trim().equals("")) {
             logger.error("Warehouse city cannot be empty.");
@@ -145,7 +144,6 @@ public class InventoryService {
         return mapInventoryDtos(inventorySet);
     }
 
-    @Cacheable(cacheNames = "InventoryByWarehouseRegion")
     public Set<InventoryDto> getByWarehouseRegion(GetInvByWarehouseRegionRequest request) {
         if (request.getRegion() == null || request.getRegion().trim().equals("")) {
             logger.error("Warehouse region cannot be empty.");
@@ -162,7 +160,6 @@ public class InventoryService {
         return mapInventoryDtos(inventorySet);
     }
 
-    @Cacheable(cacheNames = "InventoryByProductCategory")
     public Set<InventoryDto> getByProductCategory(GetInvByProductCategoryRequest request) {
         if (request.getCategory() == null || request.getCategory().trim().equals("")) {
             logger.error("Product category cannot be empty.");
@@ -179,7 +176,6 @@ public class InventoryService {
         return mapInventoryDtos(inventorySet);
     }
 
-    @Cacheable(cacheNames = "InventoryByProductId")
     public Set<InventoryDto> getByProductId(GetInvByProductIdRequest request) {
         Set<Inventory> inventorySet = inventoryRepository.getInventoryByProduct_Id(request.getProductId());
 
@@ -191,7 +187,6 @@ public class InventoryService {
         return mapInventoryDtos(inventorySet);
     }
 
-    @Cacheable(cacheNames = "InventoryByProductName")
     public Set<InventoryDto> getByProductName(GetInvByProductNameRequest request) {
         if (request.getProductName() == null || request.getProductName().trim().equals("")) {
             logger.error("Product name cannot be empty.");

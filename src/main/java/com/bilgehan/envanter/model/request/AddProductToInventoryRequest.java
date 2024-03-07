@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class AddProductToInventoryRequest implements Serializable {
+public class AddProductToInventoryRequest {
     private long productId;
     private long warehouseId;
     private long amount;

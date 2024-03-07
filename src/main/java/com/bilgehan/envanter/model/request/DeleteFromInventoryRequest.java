@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class DeleteFromInventoryRequest implements Serializable {
+public class DeleteFromInventoryRequest {
     private long productId;
     private long warehouseId;
 }
