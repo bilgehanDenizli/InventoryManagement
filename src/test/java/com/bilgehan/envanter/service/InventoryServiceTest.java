@@ -131,7 +131,7 @@ public class InventoryServiceTest {
 
     @Test
     public void whenGetByWarehouseCityCalledWithValidRequest_ItShouldReturnValidInventoryDtoSet() {
-        GetInvByWarehouseCityRequest request = new GetInvByWarehouseCityRequest();
+        GetInvByCityRequest request = new GetInvByCityRequest();
         request.setCity("antalya");
 
         Set<Inventory> inventorySet = new HashSet<>();
@@ -140,7 +140,7 @@ public class InventoryServiceTest {
         Mockito.when(inventoryRepository.getInventoryByWarehouse_City(request.getCity())).thenReturn(inventorySet);
         Set<InventoryDto> inventoryDtos = inventoryService.mapInventoryDtos(inventorySet);
 
-        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseCity(request);
+        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByCity(request);
 
         Assert.assertEquals(inventoryDtoSetResult, inventoryDtos);
 
@@ -149,7 +149,7 @@ public class InventoryServiceTest {
 
     @Test(expected = NotAcceptableException.class)
     public void whenGetByWarehouseCityCalledWithNonExistingCity_ItShouldThrowNotAcceptableException() {
-        GetInvByWarehouseCityRequest request = new GetInvByWarehouseCityRequest();
+        GetInvByCityRequest request = new GetInvByCityRequest();
         request.setCity("");
 
         Set<Inventory> inventorySet = new HashSet<>();
@@ -158,7 +158,7 @@ public class InventoryServiceTest {
         Set<InventoryDto> inventoryDtos = inventoryService.mapInventoryDtos(inventorySet);
 
         //test should stop after this
-        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseCity(request);
+        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByCity(request);
 
         Assert.assertEquals(inventoryDtoSetResult, inventoryDtos);
 
@@ -167,7 +167,7 @@ public class InventoryServiceTest {
 
     @Test
     public void whenGetByWarehouseRegionCalledWithValidRequest_ItShouldReturnValidInventoryDtoSet() {
-        GetInvByWarehouseRegionRequest request = new GetInvByWarehouseRegionRequest();
+        GetInvByRegionRequest request = new GetInvByRegionRequest();
         request.setRegion("akdeniz");
 
         Set<Inventory> inventorySet = new HashSet<>();
@@ -176,7 +176,7 @@ public class InventoryServiceTest {
         Mockito.when(inventoryRepository.getInventoryByWarehouse_Region(request.getRegion())).thenReturn(inventorySet);
         Set<InventoryDto> inventoryDtos = inventoryService.mapInventoryDtos(inventorySet);
 
-        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseRegion(request);
+        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByRegion(request);
 
         Assert.assertEquals(inventoryDtoSetResult, inventoryDtos);
 
@@ -185,7 +185,7 @@ public class InventoryServiceTest {
 
     @Test(expected = NotAcceptableException.class)
     public void whenGetByWarehouseRegionCalledWithNonExistingRegion_ItShouldThrowNotAcceptableException() {
-        GetInvByWarehouseRegionRequest request = new GetInvByWarehouseRegionRequest();
+        GetInvByRegionRequest request = new GetInvByRegionRequest();
         request.setRegion(" ");
 
         Set<Inventory> inventorySet = new HashSet<>();
@@ -194,7 +194,7 @@ public class InventoryServiceTest {
         Set<InventoryDto> inventoryDtos = inventoryService.mapInventoryDtos(inventorySet);
 
         //test should stop after this
-        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByWarehouseRegion(request);
+        Set<InventoryDto> inventoryDtoSetResult = inventoryService.getByRegion(request);
 
         Assert.assertEquals(inventoryDtoSetResult, inventoryDtos);
 

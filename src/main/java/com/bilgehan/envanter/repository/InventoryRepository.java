@@ -14,21 +14,21 @@ public interface InventoryRepository extends JpaRepository<Inventory, String> {
     Inventory getByWarehouse_IdAndProduct_Id(long warehouseId,long productId);
     Inventory getInventoryByProduct_IdAndWarehouse_Id(long productId,long warehouseId);
 
-    @Cacheable(cacheNames = "InventoryByWarehouseName",key = "#p0")
+    @Cacheable(cacheNames = "InventoryByWarehouseName",key = "#p0",condition = "#result != null")
     Set<Inventory> getInventoryByWarehouse_Name(String name);
 
-    @Cacheable(cacheNames = "InventoryByWarehouseCity",key = "#p0")
+    @Cacheable(cacheNames = "InventoryByWarehouseCity",key = "#p0",condition = "#result != null")
     Set<Inventory> getInventoryByWarehouse_City(String city);
 
-    @Cacheable(cacheNames = "InventoryByWarehouseRegion",key = "#p0")
+    @Cacheable(cacheNames = "InventoryByWarehouseRegion",key = "#p0",condition = "#result != null")
     Set<Inventory> getInventoryByWarehouse_Region(String region);
 
-    @Cacheable(cacheNames = "InventoryByProductCategory",key = "#p0")
+    @Cacheable(cacheNames = "InventoryByProductCategory",key = "#p0",condition = "#result != null")
     Set<Inventory> getInventoryByProduct_ProductCategory_Category(String category);
 
-    @Cacheable(cacheNames = "InventoryByProductId",key = "#p0")
+    @Cacheable(cacheNames = "InventoryByProductId",key = "#p0",condition = "#result != null")
     Set<Inventory> getInventoryByProduct_Id(long productId);
 
-    @Cacheable(cacheNames = "InventoryByProductName",key = "#p0")
+    @Cacheable(cacheNames = "InventoryByProductName",key = "#p0",condition = "#result != null")
     Set<Inventory> getInventoryByProduct_Name(String productName);
 }

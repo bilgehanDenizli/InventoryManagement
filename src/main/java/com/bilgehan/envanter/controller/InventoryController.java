@@ -3,7 +3,6 @@ package com.bilgehan.envanter.controller;
 import com.bilgehan.envanter.model.dto.InventoryDto;
 import com.bilgehan.envanter.model.request.*;
 import com.bilgehan.envanter.service.InventoryService;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,13 +39,13 @@ public class InventoryController {
     }
 
     @PostMapping("/byWarehouseCity")
-    public ResponseEntity<Set<InventoryDto>> getByWarehouseCity(@RequestBody GetInvByWarehouseCityRequest request){
-        return ResponseEntity.ok(inventoryService.getByWarehouseCity(request));
+    public ResponseEntity<Set<InventoryDto>> getByCity(@RequestBody GetInvByCityRequest request){
+        return ResponseEntity.ok(inventoryService.getByCity(request));
     }
 
     @PostMapping("/byWarehouseRegion")
-    public ResponseEntity<Set<InventoryDto>> getByWarehouseRegion(@RequestBody GetInvByWarehouseRegionRequest request){
-        return ResponseEntity.ok(inventoryService.getByWarehouseRegion(request));
+    public ResponseEntity<Set<InventoryDto>> getByRegion(@RequestBody GetInvByRegionRequest request){
+        return ResponseEntity.ok(inventoryService.getByRegion(request));
     }
 
     @PostMapping("/byProductCategory")

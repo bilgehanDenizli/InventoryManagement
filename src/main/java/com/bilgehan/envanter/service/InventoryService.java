@@ -14,8 +14,6 @@ import com.bilgehan.envanter.repository.WarehouseRepository;
 import com.bilgehan.envanter.exception.NotAcceptableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -128,7 +126,7 @@ public class InventoryService {
         return mapInventoryDtos(inventorySet);
     }
 
-    public Set<InventoryDto> getByWarehouseCity(GetInvByWarehouseCityRequest request) {
+    public Set<InventoryDto> getByCity(GetInvByCityRequest request) {
         if (request.getCity() == null || request.getCity().trim().equals("")) {
             logger.error("Warehouse city cannot be empty.");
             throw new NotAcceptableException("Warehouse city cannot be empty.");
@@ -144,7 +142,7 @@ public class InventoryService {
         return mapInventoryDtos(inventorySet);
     }
 
-    public Set<InventoryDto> getByWarehouseRegion(GetInvByWarehouseRegionRequest request) {
+    public Set<InventoryDto> getByRegion(GetInvByRegionRequest request) {
         if (request.getRegion() == null || request.getRegion().trim().equals("")) {
             logger.error("Warehouse region cannot be empty.");
             throw new NotAcceptableException("Warehouse region cannot be empty.");
@@ -205,7 +203,7 @@ public class InventoryService {
 
     public Set<InventoryDto> mapInventoryDtos(Set<Inventory> inventorySet) {
         Set<InventoryDto> inventoryDtoSet = new HashSet<>();
-        for (Inventory inventory : inventorySet
+        /*for (Inventory inventory : inventorySet
         ) {
             inventoryDtoSet.add(InventoryDto.builder()
                     .inventoryId(inventory.getId())
@@ -215,7 +213,15 @@ public class InventoryService {
                     .isDeleted(inventory.isDeleted())
                     .updatedAt(inventory.getUpdatedAt())
                     .build());
-        }
+        }*/
+        inventorySet.forEach(inventory -> inventoryDtoSet.add(InventoryDto.builder()
+                .inventoryId(inventory.getId())
+                .product(inventory.getProduct())
+                .warehouse(inventory.getWarehouse())
+                .amount(inventory.getAmount())
+                .isDeleted(inventory.isDeleted())
+                .updatedAt(inventory.getUpdatedAt())
+                .build()));
         return inventoryDtoSet;
     }
 

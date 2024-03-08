@@ -35,7 +35,6 @@ public class KafkaConsumer {
         warehouseCache.getCacheName().forEach(cacheName -> {
             deleteCacheByWarehouseName(cacheName,warehouseCache.getWarehouseName());
         });
-
     }
 
     private void deleteCacheByWarehouseName(String cacheName, String warehouseName) {
