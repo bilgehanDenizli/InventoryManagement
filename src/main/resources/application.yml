@@ -30,7 +30,7 @@ spring:
 #KAFKA
 
 #hz-client:
-#  cluster-name: Inventory_Management
+#  cluster-name: Inventory-Management
 #  network-config:
 #    addresses:
 #      - localhost:5701
