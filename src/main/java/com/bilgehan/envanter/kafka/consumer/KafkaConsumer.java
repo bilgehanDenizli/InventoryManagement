@@ -1,13 +1,16 @@
 package com.bilgehan.envanter.kafka.consumer;
 
+import com.bilgehan.envanter.model.entity.Inventory;
 import com.bilgehan.envanter.model.kafka.WarehouseCache;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.Cache;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @Slf4j
@@ -44,7 +47,7 @@ public class KafkaConsumer {
     }
 
     public void deleteCache(String cacheName) {
-        IMap<Integer, String> map = hazelcastInstance.getMap(cacheName);
+        IMap<Integer, Inventory> map = hazelcastInstance.getMap(cacheName);
         map.evictAll();
         log.info("Deleting cache name {}", cacheName);
     }
