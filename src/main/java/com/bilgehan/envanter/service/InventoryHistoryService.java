@@ -24,6 +24,7 @@ public class InventoryHistoryService {
         List<InventoryHistoryDto> inventoryHistoryDtoList = new ArrayList<>();
         PageRequest pageRequest = PageRequest.of(request.getPage(),request.getLimit());
         Page<InventoryHistory> inventoryHistoryList = inventoryHistoryRepository.findAllWithPagingOrderByCreatedAtDesc(pageRequest);
+        //asd
 
         for (InventoryHistory inventoryHistory: inventoryHistoryList
         ) {
