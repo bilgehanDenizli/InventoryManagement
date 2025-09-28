@@ -24,4 +24,10 @@ public class InventoryHistoryController {
     public ResponseEntity<List<InventoryHistoryDto>> getHistory(@RequestBody GetHistoryRequest getHistoryRequest) {
         return ResponseEntity.ok(inventoryHistoryService.getHistory(getHistoryRequest));
     }
+
+    @PostMapping("/batch-insert")
+    public ResponseEntity<Void> insertHistory() {
+        inventoryHistoryService.fireBatchEvent();
+        return ResponseEntity.ok().build();
+    }
 }

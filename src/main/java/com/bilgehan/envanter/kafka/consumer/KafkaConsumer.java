@@ -1,27 +1,36 @@
 package com.bilgehan.envanter.kafka.consumer;
 
 import com.bilgehan.envanter.model.entity.Inventory;
+import com.bilgehan.envanter.model.entity.InventoryHistory;
 import com.bilgehan.envanter.model.kafka.WarehouseCache;
+import com.bilgehan.envanter.service.InventoryHistoryService;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.Cache;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class KafkaConsumer {
-
-
     private final HazelcastInstance hazelcastInstance;
+    private final InventoryHistoryService inventoryHistoryService;
+    private final List<InventoryHistory> buffer = new ArrayList<>();
+    @Value("${batch.inventory-history.size}")
+    private final int BATCH_SIZE = 10;
+    private final long FLUSH_INTERVAL_MS = 1000 * 60;
+    private Instant lastFlush = Instant.now();
 
-    public KafkaConsumer(HazelcastInstance hazelcastInstance) {
-        this.hazelcastInstance = hazelcastInstance;
-    }
 
     @KafkaListener(topics = "inventory-cache-delete", groupId = "group-1")
     public void consumeDeleteCaches(List<String> cacheNames) {
@@ -36,8 +45,31 @@ public class KafkaConsumer {
     @KafkaListener(topics = "inventory-cache-delete-by-warehouse-name", groupId = "group-1")
     public void consumeDeleteCacheByWarehouseName(WarehouseCache warehouseCache) {
         warehouseCache.getCacheName().forEach(cacheName -> {
-            deleteCacheByWarehouseName(cacheName,warehouseCache.getWarehouseName());
+            deleteCacheByWarehouseName(cacheName, warehouseCache.getWarehouseName());
         });
+    }
+
+    @KafkaListener(topics = "inventory-history-log-batch", groupId = "group-1", containerFactory = "manualAckKafkaListenerContainerFactory")
+    public void consumeInventoryHistoryLogBatch(List<ConsumerRecord<String, InventoryHistory>> records, Acknowledgment ack) {
+        if (records.isEmpty()) return;
+
+        try {
+            records.stream()
+                    .map(ConsumerRecord::value)
+                    .forEach(buffer::add);
+
+            boolean sizeReached = buffer.size() >= BATCH_SIZE;
+            boolean timeReached = Duration.between(lastFlush, Instant.now()).toMillis() >= FLUSH_INTERVAL_MS;
+            if (sizeReached || timeReached) {
+                inventoryHistoryService.insertBatchInventoryHistory(new ArrayList<>(buffer));
+                ack.acknowledge();
+                buffer.clear();
+                lastFlush = Instant.now();
+            }
+        } catch (Exception e) {
+            log.error("Failed to process batch", e);
+        }
+
     }
 
     private void deleteCacheByWarehouseName(String cacheName, String warehouseName) {

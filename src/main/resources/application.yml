@@ -41,5 +41,8 @@ logging:
       bilgehan: TRACE
     root: WARN
 
+batch:
+  inventory-history:
+    size: 10
 
 

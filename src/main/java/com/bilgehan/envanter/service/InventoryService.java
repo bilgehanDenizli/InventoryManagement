@@ -1,5 +1,6 @@
 package com.bilgehan.envanter.service;
 
+import com.bilgehan.envanter.kafka.producer.KafkaEvent;
 import com.bilgehan.envanter.kafka.producer.KafkaProducer;
 import com.bilgehan.envanter.model.dto.InventoryDto;
 import com.bilgehan.envanter.model.entity.Inventory;
@@ -28,14 +29,15 @@ public class InventoryService {
     private final InventoryHistoryRepository inventoryHistoryRepository;
     private final ProductRepository productRepository;
     private final WarehouseRepository warehouseRepository;
-    private final KafkaProducer kafkaProducer;
+    private final KafkaEvent kafkaEvent;
 
-    public InventoryService(InventoryRepository inventoryRepository, InventoryHistoryRepository inventoryHistoryRepository, ProductRepository productRepository, WarehouseRepository warehouseRepository, KafkaProducer kafkaProducer) {
+    public InventoryService(InventoryRepository inventoryRepository, InventoryHistoryRepository inventoryHistoryRepository, ProductRepository productRepository,
+                            WarehouseRepository warehouseRepository, KafkaEvent kafkaEvent) {
         this.inventoryRepository = inventoryRepository;
         this.inventoryHistoryRepository = inventoryHistoryRepository;
         this.productRepository = productRepository;
         this.warehouseRepository = warehouseRepository;
-        this.kafkaProducer = kafkaProducer;
+        this.kafkaEvent = kafkaEvent;
     }
 
 
@@ -64,7 +66,6 @@ public class InventoryService {
                 logger.warn("You have less than ten products left in your inventory.");
             }
         } else {
-            //if product doesn't exist in the inventory and the given amount is smaller than zero throws an exception.
             if (request.getAmount() < 0) {
                 logger.error("You cant take products you dont have in the warehouse inventory.");
                 throw new NotAcceptableException("You cant take products you dont have in the warehouse inventory.");
@@ -83,20 +84,17 @@ public class InventoryService {
                     .amount(request.getAmount())
                     .build();
         }
-        //inventory insert
         inventoryRepository.save(inventory);
-        logger.info("Saved Product Inventory to Database");
+        logger.info("Saved Product Inventory {} to Database", inventory);
 
-        //inventory history build and insert
         InventoryHistory inventoryHistory = InventoryHistory.builder()
                 .productId(inventory.getProduct().getId())
                 .amountChange(request.getAmount())
                 .warehouseId(request.getWarehouseId())
                 .build();
+        kafkaEvent.batchInventoryHistory(inventoryHistory);
+        kafkaEvent.deleteCacheByWarehouseName(request.getWarehouseId());
 
-        kafkaProducer.deleteCacheByWarehouseName(request.getWarehouseId());
-
-        inventoryHistoryRepository.save(inventoryHistory);
         logger.info("Saved Inventory History to Database");
     }
 
