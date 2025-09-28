@@ -23,7 +23,7 @@ public class CacheController {
 
     @PostMapping("/flushByName")
     public void flushByName(@RequestBody CacheDeleteByNameRequest request){
-        kafkaConsumer.deleteCache(request.getCacheName());
+        kafkaProducer.deleteCacheByName(request.getCacheName());
     }
 
 }

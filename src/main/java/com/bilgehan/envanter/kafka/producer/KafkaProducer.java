@@ -32,7 +32,7 @@ public class KafkaProducer {
 
     public void deleteCache() {
         List<String> caches = CacheConstants.getCacheNames();
-        kafkaTemplate.send("inventory-cache-delete", UUID.randomUUID().toString(),caches);
+        kafkaTemplate.send("inventory-cache-delete", UUID.randomUUID().toString(), caches);
     }
 
     public void deleteCacheByName(String cacheName) {

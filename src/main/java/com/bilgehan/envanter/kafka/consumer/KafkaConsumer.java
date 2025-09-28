@@ -43,7 +43,7 @@ public class KafkaConsumer {
     private void deleteCacheByWarehouseName(String cacheName, String warehouseName) {
         IMap<Integer, String> map = hazelcastInstance.getMap(cacheName);
         map.remove(warehouseName);
-        log.info("Deleting cache name {} and warehouse name {}", cacheName,warehouseName);
+        log.info("Deleting cache name {} and warehouse name {}", cacheName, warehouseName);
     }
 
     public void deleteCache(String cacheName) {
